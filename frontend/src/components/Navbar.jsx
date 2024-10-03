@@ -6,29 +6,30 @@ import { RxDashboard } from "react-icons/rx";
 const Navbar = () => {
   const router = useLocation();
   const navigate = useNavigate();
+  const dashboardType = router.state && router.state.type ? `${router.state.type} Dashboard` : "Dashboard";
+
   return (
-    <div className="shadow-md px-6 py-4">
+    <nav className="bg-white shadow-md px-6 py-4">
       <div className="max-w-6xl flex justify-between items-center mx-auto">
+        {/* Dashboard Title */}
         <p
-          className="font-semibold text-2xl flex justify-center items-center cursor-pointer"
+          className="font-bold text-2xl flex items-center cursor-pointer hover:text-blue-600 transition duration-300"
           onClick={() => navigate("/")}
         >
-          <span className="mr-2">
-            <RxDashboard />
-          </span>{" "}
-          {router.state && router.state.type} Dashboard
+          <RxDashboard className="mr-2 text-blue-600" />
+          {dashboardType}
         </p>
+
+        {/* Logout Button */}
         <button
-          className="flex justify-center items-center text-red-500 px-3 py-2 font-semibold rounded-sm"
+          className="flex items-center bg-red-100 text-red-500 px-4 py-2 font-semibold rounded hover:bg-red-200 transition duration-300"
           onClick={() => navigate("/")}
         >
           Logout
-          <span className="ml-2">
-            <FiLogOut />
-          </span>
+          <FiLogOut className="ml-2" />
         </button>
       </div>
-    </div>
+    </nav>
   );
 };
 
